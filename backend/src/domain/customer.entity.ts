@@ -1,4 +1,5 @@
 import { IAddress } from "./address.entity";
+import { ICard } from "./cards.entity";
 import { CustomerStatus, DocumentType } from "./types";
 
 export interface ICustomer {
@@ -8,8 +9,9 @@ export interface ICustomer {
     phone: string;
     documentType: DocumentType;
     documentNumber: string;
-    address: IAddress;
     status: CustomerStatus;
+    address: IAddress;
+    cards?: ICard[];
     createdAt: Date;
     updatedAt: Date;
     deletedAt?: Date;
@@ -22,8 +24,9 @@ export class Customer implements ICustomer {
     phone: string;
     documentType: DocumentType;
     documentNumber: string;
-    address: IAddress;
     status: CustomerStatus;
+    address: IAddress;
+    cards?: ICard[];
     createdAt: Date;
     updatedAt: Date;
     deletedAt?: Date;
