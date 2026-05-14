@@ -1,5 +1,3 @@
-import { DocumentType } from "./types";
-
 export interface IAddress {
     id: string;
     line1: string;

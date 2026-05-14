@@ -1,13 +1,13 @@
 import { IAddress } from "./address.entity";
 import { ICard } from "./cards.entity";
-import { CustomerStatus, DocumentType } from "./types";
+import { CustomerStatus, PersonType } from "./types";
 
 export interface ICustomer {
     id: string;
     name: string;
     email: string;
     phone: string;
-    documentType: DocumentType;
+    personType: PersonType;
     documentNumber: string;
     status: CustomerStatus;
     address: IAddress;
@@ -22,7 +22,7 @@ export class Customer implements ICustomer {
     name: string;
     email: string;
     phone: string;
-    documentType: DocumentType;
+    personType: PersonType;
     documentNumber: string;
     status: CustomerStatus;
     address: IAddress;
