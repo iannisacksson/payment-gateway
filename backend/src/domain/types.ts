@@ -19,3 +19,9 @@ export enum MerchantStatus {
   ACTIVE = "ACTIVE",
   INACTIVE = "INACTIVE",
 }
+
+export enum Currency {
+  USD = "USD",
+  EUR = "EUR",
+  BRL = "BRL",
+};
