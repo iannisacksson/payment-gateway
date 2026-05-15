@@ -1,5 +1,5 @@
 import { IAddress } from "./address.entity";
-import { ICard } from "./cards.entity";
+import { ICard } from "./card.entity";
 import { CustomerStatus, PersonType } from "./types";
 
 export interface ICustomer {
