@@ -1,5 +1,3 @@
-import { IAddress } from "./address.entity";
-import { IMerchantDocument } from "./merchant_document.entity";
 import { MerchantStatus, PersonType } from "./types";
 
 export interface IMerchant {
@@ -10,8 +8,6 @@ export interface IMerchant {
   personType: PersonType;
   documentNumber: string;
   status: MerchantStatus;
-  address: IAddress;
-  documents?: IMerchantDocument[];
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;
@@ -25,8 +21,6 @@ export class Merchant implements IMerchant {
   personType: PersonType;
   documentNumber: string;
   status: MerchantStatus;
-  address: IAddress;
-  documents?: IMerchantDocument[];
   createdAt: Date;
   updatedAt: Date;
   deletedAt?: Date;

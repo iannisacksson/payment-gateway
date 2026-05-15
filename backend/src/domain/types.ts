@@ -19,17 +19,3 @@ export enum MerchantStatus {
   ACTIVE = "ACTIVE",
   INACTIVE = "INACTIVE",
 }
-
-export enum DocumentType {
-  SELFIE = "SELFIE",
-  CNH_FRONT = "CNH_FRONT",
-  CNH_BACK = "CNH_BACK",
-  RG_FRONT = "RG_FRONT",
-  RG_BACK = "RG_BACK",
-}
-
-export enum MerchantDocumentStatus {
-  PENDING = "PENDING",
-  APPROVED = "APPROVED",
-  REJECTED = "REJECTED",
-}
