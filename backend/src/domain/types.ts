@@ -3,25 +3,8 @@ export enum PersonType {
   CNPJ = "CNPJ",
 }
 
-export enum CustomerStatus {
-  PENDING = "PENDING",
-  ACTIVE = "ACTIVE",
-  INACTIVE = "INACTIVE",
-}
-
-export enum CardStatus {
-  ACTIVE = "ACTIVE",
-  INACTIVE = "INACTIVE",
-}
-
-export enum MerchantStatus {
-  PENDING = "PENDING",
-  ACTIVE = "ACTIVE",
-  INACTIVE = "INACTIVE",
-}
-
 export enum Currency {
   USD = "USD",
   EUR = "EUR",
   BRL = "BRL",
-};
+}

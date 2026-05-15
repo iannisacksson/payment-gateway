@@ -40,6 +40,7 @@ export default defineConfig([
       "prefer-const": ["error", { ignoreReadBeforeAssign: true }],
       "no-var": "error",
       "no-console": "warn",
+      "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 0, maxBOF: 0 }],
     },
   },
   eslintConfigPrettier,

@@ -1,6 +1,6 @@
-import { ICustomer } from "./customer.entity";
-import { IMerchant } from "./merchant.entity";
-import { Currency } from "./types";
+import { ICustomer } from "@payment-gateway/domain/customer.entity";
+import { IMerchant } from "@payment-gateway/domain/merchant.entity";
+import { Currency } from "@payment-gateway/domain/types";
 
 export interface PaymentIntentStatus {
   PENDING: "PENDING";

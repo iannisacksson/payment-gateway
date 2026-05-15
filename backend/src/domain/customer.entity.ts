@@ -1,5 +1,11 @@
-import { ICard } from "./card.entity";
-import { CustomerStatus, PersonType } from "./types";
+import { ICard } from "@payment-gateway/domain/card.entity";
+import { PersonType } from "./types";
+
+export enum CustomerStatus {
+  PENDING = "PENDING",
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
+}
 
 export interface ICustomer {
   id: string;

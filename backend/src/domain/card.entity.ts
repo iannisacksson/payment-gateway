@@ -1,4 +1,7 @@
-import { CardStatus } from "./types";
+export enum CardStatus {
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
+}
 
 export interface ICard {
   id: string;

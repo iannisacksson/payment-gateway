@@ -15,6 +15,14 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "ignoreDeprecations": "6.0",
+    "baseUrl": "./",
+    "paths": {
+      "@payment-gateway/domain": ["src/domain"],
+      "@payment-gateway/domain/*": ["src/domain/*"],
+      "@payment-gateway/infra": ["src/infra"],
+      "@payment-gateway/infra/*": ["src/infra/*"]
+    }
   }
 }

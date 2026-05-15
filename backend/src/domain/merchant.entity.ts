@@ -1,4 +1,10 @@
-import { MerchantStatus, PersonType } from "./types";
+import { PersonType } from "./types";
+
+export enum MerchantStatus {
+  PENDING = "PENDING",
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
+}
 
 export interface IMerchant {
   id: string;
