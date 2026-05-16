@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
-    "target": "esnext",
+    "module": "commonjs",
+    "target": "es2020",
     "types": [],
     "sourceMap": true,
     "declaration": true,
@@ -9,7 +9,7 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "strict": true,
-    "jsx": "react-jsx",
+    "esModuleInterop": true,
     "verbatimModuleSyntax": false,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
@@ -17,12 +17,15 @@
     "skipLibCheck": true,
     "strictPropertyInitialization": false,
     "ignoreDeprecations": "6.0",
+    "rootDir": "./src",
     "baseUrl": "./",
+    "outDir": "./dist",
     "paths": {
       "@payment-gateway/domain": ["src/domain"],
       "@payment-gateway/domain/*": ["src/domain/*"],
       "@payment-gateway/infra": ["src/infra"],
       "@payment-gateway/infra/*": ["src/infra/*"]
     }
-  }
+  },
+  "include": ["src/**/*.ts"]
 }
