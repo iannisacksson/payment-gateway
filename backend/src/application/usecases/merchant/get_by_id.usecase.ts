@@ -1,8 +1,8 @@
 import { IMerchant } from "@payment-gateway/domain/merchant.entity";
-import { MerchantRepository } from "@payment-gateway/application/repositories/merchant.repository";
+import { IMerchantRepository } from "@payment-gateway/application/repositories/merchant.repository";
 
 export class GetMerchantByIdUseCase {
-  constructor(private readonly merchantRepository: MerchantRepository) {}
+  constructor(private readonly merchantRepository: IMerchantRepository) {}
 
   async execute(merchant: IMerchant): Promise<IMerchant> {
     const existingMerchant = await this.merchantRepository.findById(

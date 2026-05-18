@@ -1,7 +1,10 @@
 import { Merchant } from "@payment-gateway/domain/merchant.entity";
-import { Pagination, TPaginationResponse } from "@payment-gateway/shared/pagination";
+import {
+  Pagination,
+  TPaginationResponse,
+} from "@payment-gateway/shared/pagination";
 
-export interface MerchantRepository {
+export interface IMerchantRepository {
   /**
    * Finds a merchant by its ID.
    * @param id The ID of the merchant.

@@ -41,6 +41,7 @@ export default defineConfig([
       "no-var": "error",
       "no-console": "warn",
       "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 0, maxBOF: 0 }],
+      "@typescript-eslint/no-empty-object-type": "off",
     },
   },
   eslintConfigPrettier,

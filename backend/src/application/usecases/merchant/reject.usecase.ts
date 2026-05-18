@@ -2,10 +2,10 @@ import {
   IMerchant,
   MerchantStatus,
 } from "@payment-gateway/domain/merchant.entity";
-import { MerchantRepository } from "@payment-gateway/application/repositories/merchant.repository";
+import { IMerchantRepository } from "@payment-gateway/application/repositories/merchant.repository";
 
 export class RejectMerchantUseCase {
-  constructor(private readonly merchantRepository: MerchantRepository) {}
+  constructor(private readonly merchantRepository: IMerchantRepository) {}
 
   async execute(merchant: IMerchant): Promise<IMerchant> {
     // Check if a merchant with the same ID exists

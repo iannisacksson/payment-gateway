@@ -3,10 +3,10 @@ import {
   Merchant,
   MerchantStatus,
 } from "@payment-gateway/domain/merchant.entity";
-import { MerchantRepository } from "@payment-gateway/application/repositories/merchant.repository";
+import { IMerchantRepository } from "@payment-gateway/application/repositories/merchant.repository";
 
 export class CreateMerchantUseCase {
-  constructor(private readonly merchantRepository: MerchantRepository) {}
+  constructor(private readonly merchantRepository: IMerchantRepository) {}
 
   async execute(merchant: IMerchant): Promise<void> {
     // Check if a merchant with the same email or document number already exists

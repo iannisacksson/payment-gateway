@@ -20,6 +20,8 @@
     "rootDir": "./src",
     "baseUrl": "./",
     "outDir": "./dist",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "paths": {
       "@payment-gateway/domain": ["src/domain"],
       "@payment-gateway/domain/*": ["src/domain/*"],
