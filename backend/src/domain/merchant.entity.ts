@@ -3,6 +3,7 @@ import { PersonType } from "./types";
 export enum MerchantStatus {
   PENDING = "PENDING",
   ACTIVE = "ACTIVE",
+  REJECTED = "REJECTED",
   INACTIVE = "INACTIVE",
 }
 

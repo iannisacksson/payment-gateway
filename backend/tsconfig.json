@@ -24,7 +24,11 @@
       "@payment-gateway/domain": ["src/domain"],
       "@payment-gateway/domain/*": ["src/domain/*"],
       "@payment-gateway/infra": ["src/infra"],
-      "@payment-gateway/infra/*": ["src/infra/*"]
+      "@payment-gateway/infra/*": ["src/infra/*"],
+      "@payment-gateway/application": ["src/application"],
+      "@payment-gateway/application/*": ["src/application/*"],
+      "@payment-gateway/shared": ["src/shared"],
+      "@payment-gateway/shared/*": ["src/shared/*"]
     }
   },
   "include": ["src/**/*.ts"]
