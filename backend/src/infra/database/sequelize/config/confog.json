@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "payment-gateway",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": 5433
+  },
+  "test": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "payment-gateway_test",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": 5433
+  },
+  "production": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "payment-gateway_production",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": 5433
+  }
+}

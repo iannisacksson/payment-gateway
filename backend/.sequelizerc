@@ -1,0 +1,26 @@
+const path = require("path");
+
+module.exports = {
+  "models-path": path.resolve(
+    "src",
+    "infra",
+    "database",
+    "sequelize",
+    "models",
+  ),
+  "migrations-path": path.resolve(
+    "src",
+    "infra",
+    "database",
+    "sequelize",
+    "migrations",
+  ),
+  "config": path.resolve(
+    "src",
+    "infra",
+    "database",
+    "sequelize",
+    "config",
+    "confog.json",
+  ),
+};

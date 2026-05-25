@@ -1,26 +1,32 @@
 import { Sequelize } from "sequelize-typescript";
+import path from "node:path";
 
 export class Database {
-  private readonly sequelize: Sequelize;
+  private static instance: Sequelize;
 
-  constructor() {
-    this.sequelize = new Sequelize({
-      database: "payment-gateway",
-      username: "postgres",
-      password: "postgres",
-      host: "localhost",
-      dialect: "postgres",
-      port: 5433,
-      models: [__dirname + "/../models"], // Adjust the path to your models
-    });
-  }
+  private constructor() {}
 
-  async connect() {
-    try {
-      await this.sequelize.authenticate();
-      console.log("Connection has been established successfully.");
-    } catch (error) {
-      console.error("Unable to connect to the database:", error);
+  public static getInstance(): Sequelize {
+    if (!Database.instance) {
+      Database.instance = new Sequelize({
+        database: "payment-gateway",
+        username: "postgres",
+        password: "postgres",
+        host: "localhost",
+        dialect: "postgres",
+        port: 5433,
+        models: [path.join(__dirname, "/../models")], // Adjust the path to your models
+      });
     }
+    Database.instance
+      .authenticate()
+      .then(() => {
+        console.log("Database connection established successfully.");
+      })
+      .catch((error) => {
+        console.error("Unable to connect to the database:", error);
+      });
+    return Database.instance;
   }
 }
+
