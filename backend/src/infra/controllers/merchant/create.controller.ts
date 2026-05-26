@@ -1,22 +1,22 @@
+import { Request, Response } from "express";
 import { CreateMerchantUseCase } from "@payment-gateway/application/usecases/merchant/create.usecase";
 import { Merchant } from "@payment-gateway/domain/merchant.entity";
-import { Request, Response } from "express";
+import { MerchantRepository } from "@payment-gateway/infra/repositories/merchant.repository";
 
 export class CreateMerchantController {
-  constructor() {}
-
   async handle(request: Request, response: Response): Promise<Response> {
     try {
       const merchantRepository = new MerchantRepository();
       const usecase = new CreateMerchantUseCase(merchantRepository);
-      const { name, email, documentNumber, phone, personType } = request.body;
+      const { name, email, document_number, phone, person_type } = request.body;
       const merchant = new Merchant({
         name,
         email,
-        documentNumber,
+        documentNumber: document_number,
         phone,
-        personType,
+        personType: person_type,
       });
+
       await usecase.execute(merchant);
       return response
         .status(201)
