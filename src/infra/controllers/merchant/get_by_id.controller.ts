@@ -12,7 +12,18 @@ export class GetMerchantByIdController {
         new Merchant({ id: request.params.id as string })
       );
 
-      return response.status(200).json(merchant);
+      return response
+        .status(200)
+        .json({
+          id: merchant.id,
+          name: merchant.name,
+          status: merchant.status,
+          document_number: merchant.documentNumber,
+          phone: merchant.phone,
+          person_type: merchant.personType,
+          created_at: merchant.createdAt,
+          updated_at: merchant.updatedAt,
+        });
     } catch (error: unknown) {
       return response.status(404).json({
         error: (error as Error).message || 'Failed to fetch merchant',

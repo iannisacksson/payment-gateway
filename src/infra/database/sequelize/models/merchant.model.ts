@@ -12,6 +12,7 @@ import {
 } from 'sequelize-typescript';
 import {
   IMerchant,
+  Merchant,
   MerchantStatus,
 } from '@payment-gateway/domain/merchant.entity';
 import { PersonType } from '@payment-gateway/domain/types';
@@ -71,4 +72,8 @@ export class MerchantModel
 
   @DeletedAt
   deletedAt?: Date;
+
+  toDomain() {
+    return new Merchant(this.get({ plain: true }));
+  }
 }

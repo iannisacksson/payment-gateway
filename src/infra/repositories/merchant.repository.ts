@@ -8,21 +8,25 @@ import {
 
 export class MerchantRepository implements IMerchantRepository {
   async findById(id: string): Promise<IMerchant | null> {
-    return MerchantModel.findByPk(id);
+    const merchant = await MerchantModel.findByPk(id);
+    return this.toDomain(merchant);
   }
 
   async findByEmail(email: string): Promise<IMerchant | null> {
-    return MerchantModel.findOne({ where: { email } });
+    const merchant = await MerchantModel.findOne({ where: { email } });
+    return this.toDomain(merchant);
   }
 
   async findByDocumentNumber(
     documentNumber: string
   ): Promise<IMerchant | null> {
-    return MerchantModel.findOne({ where: { documentNumber } });
+    const merchant = await MerchantModel.findOne({ where: { documentNumber } });
+    return this.toDomain(merchant);
   }
 
-  async create(merchant: IMerchant): Promise<void> {
-    await MerchantModel.create(merchant);
+  async create(merchant: IMerchant): Promise<IMerchant> {
+    const createdMerchant = await MerchantModel.create(merchant);
+    return createdMerchant.toDomain();
   }
 
   async update(merchant: IMerchant): Promise<void> {
@@ -43,11 +47,15 @@ export class MerchantRepository implements IMerchantRepository {
       limit: Number(pageSize),
     });
     return {
-      data: rows,
+      data: rows?.map(row => row.toDomain()) || [],
       pageTotal: rows.length,
       page: Number(page),
       pageSize: Number(pageSize),
       total: count,
     };
+  }
+
+  private toDomain(merchantModel: MerchantModel | null): IMerchant | null {
+    return merchantModel?.toDomain() ?? null;
   }
 }

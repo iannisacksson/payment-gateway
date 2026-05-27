@@ -8,7 +8,7 @@ import { IMerchantRepository } from '@payment-gateway/application/repositories/m
 export class CreateMerchantUseCase {
   constructor(private readonly merchantRepository: IMerchantRepository) {}
 
-  async execute(merchant: IMerchant): Promise<void> {
+  async execute(merchant: IMerchant): Promise<IMerchant> {
     // Check if a merchant with the same email or document number already exists
     const existingMerchant = await this.merchantRepository.findByEmail(
       merchant.email
@@ -26,8 +26,10 @@ export class CreateMerchantUseCase {
       throw new Error('Merchant with this document number already exists');
     }
 
-    await this.merchantRepository.create(
+    const merchantCreated = await this.merchantRepository.create(
       new Merchant({ ...merchant, status: MerchantStatus.PENDING })
     );
+
+    return merchantCreated;
   }
 }

@@ -17,10 +17,13 @@ export class CreateMerchantController {
         personType: person_type,
       });
 
-      await usecase.execute(merchant);
-      return response
-        .status(201)
-        .json({ message: 'Merchant created successfully' });
+      const merchantCreated = await usecase.execute(merchant);
+      return response.status(201).json({
+        id: merchantCreated.id,
+        name: merchantCreated.name,
+        status: merchantCreated.status,
+        created_at: merchantCreated.createdAt,
+      });
     } catch (error: unknown) {
       return response.status(400).json({
         error: (error as Error).message || 'Failed to create merchant',
