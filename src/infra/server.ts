@@ -1,4 +1,4 @@
-import { Database } from "../infra/database";
+import { Database } from "./database";
 import express from "express";
 import { router } from "./routes";
 
