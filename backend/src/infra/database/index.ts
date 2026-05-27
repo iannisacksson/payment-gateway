@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import path from "node:path";
+import { MerchantModel } from "./sequelize/models/merchant.model";
 
 export class Database {
   private static instance: Sequelize;
@@ -15,7 +15,7 @@ export class Database {
         host: "localhost",
         dialect: "postgres",
         port: 5433,
-        models: [path.join(__dirname, "/../models")], // Adjust the path to your models
+        models: [MerchantModel], // Adjust the path to your models
       });
     }
     Database.instance

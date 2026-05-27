@@ -3,28 +3,27 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('merchants', {
+    await queryInterface.createTable("merchants", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID,
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
       },
       phone: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: true,
       },
       personType: {
-        name: 'person_type',
+        field: "person_type",
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -32,7 +31,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
-        field: 'document_number',
+        field: "document_number",
       },
       status: {
         allowNull: false,
@@ -41,18 +40,20 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+        field: "created_at",
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+        field: "updated_at",
       },
-        deletedAt: {
+      deletedAt: {
         allowNull: true,
         type: Sequelize.DATE,
-        field: 'deleted_at',
-      }
+        field: "deleted_at",
+      },
     });
   },
 

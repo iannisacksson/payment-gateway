@@ -27,11 +27,12 @@ interface MerchantCreationAttributes extends Optional<
   tableName: "merchants",
   timestamps: true,
   paranoid: true,
+  underscored: true,
 })
-export class MerchantModel extends Model<
-  MerchantAttributes,
-  MerchantCreationAttributes
-> implements IMerchant {
+export class MerchantModel
+  extends Model<MerchantAttributes, MerchantCreationAttributes>
+  implements IMerchant
+{
   @PrimaryKey
   @AllowNull(false)
   @Default(DataType.UUIDV4)
