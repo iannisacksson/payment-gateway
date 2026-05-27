@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { ApproveMerchantController } from '../controllers/merchant/approve.controller';
-import { CreateMerchantController } from '../controllers/merchant/create.controller';
-import { GetAllMerchantsController } from '../controllers/merchant/get_all.controller';
-import { GetMerchantByIdController } from '../controllers/merchant/get_by_id.controller';
-import { RejectMerchantController } from '../controllers/merchant/reject.controller';
+import { ApproveMerchantController } from '@payment-gateway/infra/controllers/merchant/approve.controller';
+import { CreateMerchantController } from '@payment-gateway/infra/controllers/merchant/create.controller';
+import { GetAllMerchantsController } from '@payment-gateway/infra/controllers/merchant/get_all.controller';
+import { GetMerchantByIdController } from '@payment-gateway/infra/controllers/merchant/get_by_id.controller';
+import { RejectMerchantController } from '@payment-gateway/infra/controllers/merchant/reject.controller';
 
 const merchantRouter = Router();
 

@@ -1,5 +1,5 @@
 import { IMerchantRepository } from '@payment-gateway/application/repositories/merchant.repository';
-import { MerchantModel } from '../database/sequelize/models/merchant.model';
+import { MerchantModel } from '@payment-gateway/infra/database/sequelize/models/merchant.model';
 import { IMerchant } from '@payment-gateway/domain/merchant.entity';
 import {
   Pagination,
