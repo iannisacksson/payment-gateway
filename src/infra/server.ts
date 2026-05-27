@@ -1,4 +1,4 @@
-import { Database } from './database';
+import { Database } from './database/sequelize';
 import express from 'express';
 import { router } from './routes';
 

@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import { MerchantModel } from './sequelize/models/merchant.model';
+import { MerchantModel } from './models/merchant.model';
 
 export class Database {
   private static instance: Sequelize;

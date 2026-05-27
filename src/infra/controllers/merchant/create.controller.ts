@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { CreateMerchantUseCase } from '@payment-gateway/application/usecases/merchant/create.usecase';
 import { Merchant } from '@payment-gateway/domain/merchant.entity';
-import { MerchantRepository } from '@payment-gateway/infra/repositories/merchant.repository';
+import { MerchantRepository } from '@payment-gateway/infra/database/sequelize/repositories/merchant.repository';
 
 export class CreateMerchantController {
   async handle(request: Request, response: Response): Promise<Response> {

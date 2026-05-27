@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { RejectMerchantUseCase } from '@payment-gateway/application/usecases/merchant/reject.usecase';
-import { MerchantRepository } from '@payment-gateway/infra/repositories/merchant.repository';
+import { MerchantRepository } from '@payment-gateway/infra/database/sequelize/repositories/merchant.repository';
 import { Merchant } from '@payment-gateway/domain/merchant.entity';
 
 export class RejectMerchantController {

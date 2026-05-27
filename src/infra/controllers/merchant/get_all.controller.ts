@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { GetAllMerchantsUseCase } from '@payment-gateway/application/usecases/merchant/get_all.usecase';
-import { MerchantRepository } from '@payment-gateway/infra/repositories/merchant.repository';
+import { MerchantRepository } from '@payment-gateway/infra/database/sequelize/repositories/merchant.repository';
 
 export class GetAllMerchantsController {
   async handle(request: Request, response: Response): Promise<Response> {
