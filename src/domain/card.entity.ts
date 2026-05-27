@@ -1,6 +1,6 @@
 export enum CardStatus {
-  ACTIVE = "ACTIVE",
-  INACTIVE = "INACTIVE",
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
 export interface ICard {

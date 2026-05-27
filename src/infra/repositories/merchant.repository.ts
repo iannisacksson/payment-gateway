@@ -1,10 +1,10 @@
-import { IMerchantRepository } from "@payment-gateway/application/repositories/merchant.repository";
-import { MerchantModel } from "../database/sequelize/models/merchant.model";
-import { IMerchant } from "@payment-gateway/domain/merchant.entity";
+import { IMerchantRepository } from '@payment-gateway/application/repositories/merchant.repository';
+import { MerchantModel } from '../database/sequelize/models/merchant.model';
+import { IMerchant } from '@payment-gateway/domain/merchant.entity';
 import {
   Pagination,
   TPaginationResponse,
-} from "@payment-gateway/shared/pagination";
+} from '@payment-gateway/shared/pagination';
 
 export class MerchantRepository implements IMerchantRepository {
   async findById(id: string): Promise<IMerchant | null> {
@@ -16,7 +16,7 @@ export class MerchantRepository implements IMerchantRepository {
   }
 
   async findByDocumentNumber(
-    documentNumber: string,
+    documentNumber: string
   ): Promise<IMerchant | null> {
     return MerchantModel.findOne({ where: { documentNumber } });
   }
@@ -34,7 +34,7 @@ export class MerchantRepository implements IMerchantRepository {
   }
 
   async findAll(
-    pagination: Pagination,
+    pagination: Pagination
   ): Promise<TPaginationResponse<IMerchant>> {
     const { page, pageSize } = pagination;
     const offset = (Number(page) - 1) * Number(pageSize);

@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { GetAllMerchantsUseCase } from "@payment-gateway/application/usecases/merchant/get_all.usecase";
-import { MerchantRepository } from "@payment-gateway/infra/repositories/merchant.repository";
+import { Request, Response } from 'express';
+import { GetAllMerchantsUseCase } from '@payment-gateway/application/usecases/merchant/get_all.usecase';
+import { MerchantRepository } from '@payment-gateway/infra/repositories/merchant.repository';
 
 export class GetAllMerchantsController {
   async handle(request: Request, response: Response): Promise<Response> {
@@ -15,7 +15,7 @@ export class GetAllMerchantsController {
       return response.status(200).json(merchants);
     } catch (error: unknown) {
       return response.status(400).json({
-        error: (error as Error).message || "Failed to fetch merchants",
+        error: (error as Error).message || 'Failed to fetch merchants',
       });
     }
   }

@@ -1,14 +1,14 @@
-import { IPaymentIntent } from "@payment-gateway/domain/payment_intent.entity";
+import { IPaymentIntent } from '@payment-gateway/domain/payment_intent.entity';
 
 export interface TransactionStatus {
-  PENDING: "PENDING";
-  PROCESSING: "PROCESSING";
-  AUTHORIZED: "AUTHORIZED";
-  CAPTURED: "CAPTURED";
-  FAILED: "FAILED";
-  REFUNDED: "REFUNDED";
-  CANCELED: "CANCELED";
-  CHARGEBACK: "CHARGEBACK";
+  PENDING: 'PENDING';
+  PROCESSING: 'PROCESSING';
+  AUTHORIZED: 'AUTHORIZED';
+  CAPTURED: 'CAPTURED';
+  FAILED: 'FAILED';
+  REFUNDED: 'REFUNDED';
+  CANCELED: 'CANCELED';
+  CHARGEBACK: 'CHARGEBACK';
 }
 
 export interface ITransaction {

@@ -1,5 +1,5 @@
-import { Sequelize } from "sequelize-typescript";
-import { MerchantModel } from "./sequelize/models/merchant.model";
+import { Sequelize } from 'sequelize-typescript';
+import { MerchantModel } from './sequelize/models/merchant.model';
 
 export class Database {
   private static instance: Sequelize;
@@ -9,11 +9,11 @@ export class Database {
   public static getInstance(): Sequelize {
     if (!Database.instance) {
       Database.instance = new Sequelize({
-        database: "payment-gateway",
-        username: "postgres",
-        password: "postgres",
-        host: "localhost",
-        dialect: "postgres",
+        database: 'payment-gateway',
+        username: 'postgres',
+        password: 'postgres',
+        host: 'localhost',
+        dialect: 'postgres',
         port: 5433,
         models: [MerchantModel], // Adjust the path to your models
       });
@@ -21,10 +21,10 @@ export class Database {
     Database.instance
       .authenticate()
       .then(() => {
-        console.log("Database connection established successfully.");
+        console.log('Database connection established successfully.');
       })
-      .catch((error) => {
-        console.error("Unable to connect to the database:", error);
+      .catch(error => {
+        console.error('Unable to connect to the database:', error);
       });
     return Database.instance;
   }

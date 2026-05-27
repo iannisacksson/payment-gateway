@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import { CreateMerchantUseCase } from "@payment-gateway/application/usecases/merchant/create.usecase";
-import { Merchant } from "@payment-gateway/domain/merchant.entity";
-import { MerchantRepository } from "@payment-gateway/infra/repositories/merchant.repository";
+import { Request, Response } from 'express';
+import { CreateMerchantUseCase } from '@payment-gateway/application/usecases/merchant/create.usecase';
+import { Merchant } from '@payment-gateway/domain/merchant.entity';
+import { MerchantRepository } from '@payment-gateway/infra/repositories/merchant.repository';
 
 export class CreateMerchantController {
   async handle(request: Request, response: Response): Promise<Response> {
@@ -20,10 +20,10 @@ export class CreateMerchantController {
       await usecase.execute(merchant);
       return response
         .status(201)
-        .json({ message: "Merchant created successfully" });
+        .json({ message: 'Merchant created successfully' });
     } catch (error: unknown) {
       return response.status(400).json({
-        error: (error as Error).message || "Failed to create merchant",
+        error: (error as Error).message || 'Failed to create merchant',
       });
     }
   }

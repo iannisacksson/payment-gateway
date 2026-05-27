@@ -9,22 +9,22 @@ import {
   PrimaryKey,
   Table,
   UpdatedAt,
-} from "sequelize-typescript";
+} from 'sequelize-typescript';
 import {
   IMerchant,
   MerchantStatus,
-} from "@payment-gateway/domain/merchant.entity";
-import { PersonType } from "@payment-gateway/domain/types";
-import { Optional } from "sequelize";
+} from '@payment-gateway/domain/merchant.entity';
+import { PersonType } from '@payment-gateway/domain/types';
+import { Optional } from 'sequelize';
 
 interface MerchantAttributes extends IMerchant {}
 interface MerchantCreationAttributes extends Optional<
   MerchantAttributes,
-  "id"
+  'id'
 > {}
 
 @Table({
-  tableName: "merchants",
+  tableName: 'merchants',
   timestamps: true,
   paranoid: true,
   underscored: true,

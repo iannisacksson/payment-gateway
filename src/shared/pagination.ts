@@ -1,6 +1,6 @@
 export enum PaginationOrder {
-  ASC = "asc",
-  DESC = "desc",
+  ASC = 'asc',
+  DESC = 'desc',
 }
 
 export type PaginationSort = string | string[];

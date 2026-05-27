@@ -1,8 +1,8 @@
-import { Merchant } from "@payment-gateway/domain/merchant.entity";
+import { Merchant } from '@payment-gateway/domain/merchant.entity';
 import {
   Pagination,
   TPaginationResponse,
-} from "@payment-gateway/shared/pagination";
+} from '@payment-gateway/shared/pagination';
 
 export interface IMerchantRepository {
   /**
