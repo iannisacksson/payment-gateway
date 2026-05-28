@@ -4,6 +4,7 @@ import { CreateMerchantController } from '@payment-gateway/infra/controllers/mer
 import { GetAllMerchantsController } from '@payment-gateway/infra/controllers/merchant/get_all.controller';
 import { GetMerchantByIdController } from '@payment-gateway/infra/controllers/merchant/get_by_id.controller';
 import { RejectMerchantController } from '@payment-gateway/infra/controllers/merchant/reject.controller';
+import { expressRouter } from '@payment-gateway/infra/http/express/router';
 
 const merchantRouter = Router();
 
@@ -13,20 +14,10 @@ const getAllMerchantsController = new GetAllMerchantsController();
 const getMerchantByIdController = new GetMerchantByIdController();
 const rejectMerchantController = new RejectMerchantController();
 
-merchantRouter.get('/', (req, res) =>
-  getAllMerchantsController.handle(req, res)
-);
-merchantRouter.get('/:id', (req, res) =>
-  getMerchantByIdController.handle(req, res)
-);
-merchantRouter.post('/', (req, res) =>
-  createMerchantController.handle(req, res)
-);
-merchantRouter.patch('/:id/approve', (req, res) =>
-  approveMerchantController.handle(req, res)
-);
-merchantRouter.patch('/:id/reject', (req, res) =>
-  rejectMerchantController.handle(req, res)
-);
+merchantRouter.get('/', expressRouter(getAllMerchantsController));
+merchantRouter.get('/:id', expressRouter(getMerchantByIdController));
+merchantRouter.post('/', expressRouter(createMerchantController));
+merchantRouter.patch('/:id/approve', expressRouter(approveMerchantController));
+merchantRouter.patch('/:id/reject', expressRouter(rejectMerchantController));
 
 export { merchantRouter };

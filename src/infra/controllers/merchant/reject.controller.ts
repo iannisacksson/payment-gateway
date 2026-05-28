@@ -1,28 +1,62 @@
-import { Request, Response } from 'express';
 import { RejectMerchantUseCase } from '@payment-gateway/application/usecases/merchant/reject.usecase';
 import { MerchantRepository } from '@payment-gateway/infra/database/sequelize/repositories/merchant.repository';
-import { Merchant } from '@payment-gateway/domain/merchant.entity';
+import {
+  IMerchant,
+  Merchant,
+  MerchantStatus,
+} from '@payment-gateway/domain/merchant.entity';
+import {
+  HttpStatusCode,
+  IController,
+  IHttpRequest,
+  IHttpResponse,
+} from '@payment-gateway/infra/http/types';
 
-export class RejectMerchantController {
-  async handle(request: Request, response: Response): Promise<Response> {
-    try {
-      const merchantRepository = new MerchantRepository();
-      const usecase = new RejectMerchantUseCase(merchantRepository);
-      const merchant = await usecase.execute(
-        new Merchant({ id: request.params.id as string })
-      );
+type TRejectMerchantRequestParams = Pick<Merchant, 'id'>;
 
-      return response.status(200).json({
-        id: merchant.id,
-        name: merchant.name,
-        status: merchant.status,
-        created_at: merchant.createdAt,
-        updated_at: merchant.updatedAt,
-      });
-    } catch (error: unknown) {
-      return response.status(400).json({
-        error: (error as Error).message || 'Failed to reject merchant',
-      });
-    }
+class RejectMerchantRequestParams implements TRejectMerchantRequestParams {
+  id: string;
+}
+
+type TRejectMerchantResponse = Pick<Merchant, 'id' | 'name' | 'status'> & {
+  created_at: Date;
+  updated_at: Date;
+};
+
+class RejectMerchantResponse implements TRejectMerchantResponse {
+  id: string;
+  name: string;
+  status: MerchantStatus;
+  created_at: Date;
+  updated_at: Date;
+
+  constructor(data: IMerchant) {
+    this.id = data.id;
+    this.name = data.name;
+    this.status = data.status;
+    this.created_at = data.createdAt;
+    this.updated_at = data.updatedAt;
+  }
+}
+
+export class RejectMerchantController implements IController<
+  null,
+  RejectMerchantRequestParams,
+  null,
+  RejectMerchantResponse
+> {
+  async handle(
+    request: IHttpRequest<null, RejectMerchantRequestParams, null>
+  ): Promise<IHttpResponse<RejectMerchantResponse>> {
+    const merchantRepository = new MerchantRepository();
+    const usecase = new RejectMerchantUseCase(merchantRepository);
+    const merchant = await usecase.execute(
+      new Merchant({ id: request.params.id })
+    );
+
+    return {
+      statusCode: HttpStatusCode.OK,
+      body: new RejectMerchantResponse(merchant),
+    };
   }
 }
