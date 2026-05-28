@@ -3,7 +3,6 @@ import {
   Merchant,
   MerchantStatus,
 } from '@payment-gateway/domain/merchant.entity';
-import { MerchantRepository } from '@payment-gateway/infra/database/sequelize/repositories/merchant.repository';
 import {
   HttpStatusCode,
   IController,
@@ -11,6 +10,7 @@ import {
   IHttpResponse,
 } from '@payment-gateway/infra/http/types';
 import { PersonType } from '@payment-gateway/domain/types';
+import { IMerchantRepository } from '@payment-gateway/application/repositories/merchant.repository';
 
 type TCreateMerchantRequestBody = Pick<Merchant, 'name' | 'email' | 'phone'> & {
   document_number: string;
@@ -52,11 +52,12 @@ export class CreateMerchantController implements IController<
   null,
   CreateMerchantResponse
 > {
+  constructor(private readonly merchantRepository: IMerchantRepository) {}
+
   async handle(
     request: IHttpRequest<CreateMerchantRequestBody, null, null>
   ): Promise<IHttpResponse<CreateMerchantResponse>> {
-    const merchantRepository = new MerchantRepository();
-    const usecase = new CreateMerchantUseCase(merchantRepository);
+    const usecase = new CreateMerchantUseCase(this.merchantRepository);
     const { name, email, document_number, phone, person_type } = request.body;
     const merchant = new Merchant({
       name,

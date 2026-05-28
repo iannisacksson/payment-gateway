@@ -1,5 +1,4 @@
 import { ApproveMerchantUseCase } from '@payment-gateway/application/usecases/merchant/approve.usecase';
-import { MerchantRepository } from '@payment-gateway/infra/database/sequelize/repositories/merchant.repository';
 import {
   IMerchant,
   Merchant,
@@ -11,6 +10,7 @@ import {
   IHttpRequest,
   IHttpResponse,
 } from '@payment-gateway/infra/http/types';
+import { IMerchantRepository } from '@payment-gateway/application/repositories/merchant.repository';
 
 type TApproveMerchantRequestParams = Pick<Merchant, 'id'>;
 
@@ -45,13 +45,14 @@ export class ApproveMerchantController implements IController<
   null,
   ApproveMerchantResponse
 > {
+  constructor(private readonly merchantRepository: IMerchantRepository) {}
+
   async handle({
     params,
   }: IHttpRequest<null, ApproveMerchantRequestParams, null>): Promise<
     IHttpResponse<ApproveMerchantResponse>
   > {
-    const merchantRepository = new MerchantRepository();
-    const usecase = new ApproveMerchantUseCase(merchantRepository);
+    const usecase = new ApproveMerchantUseCase(this.merchantRepository);
 
     const { id } = params;
     const merchant = await usecase.execute(new Merchant({ id }));

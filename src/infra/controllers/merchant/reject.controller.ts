@@ -1,5 +1,4 @@
 import { RejectMerchantUseCase } from '@payment-gateway/application/usecases/merchant/reject.usecase';
-import { MerchantRepository } from '@payment-gateway/infra/database/sequelize/repositories/merchant.repository';
 import {
   IMerchant,
   Merchant,
@@ -11,6 +10,7 @@ import {
   IHttpRequest,
   IHttpResponse,
 } from '@payment-gateway/infra/http/types';
+import { IMerchantRepository } from '@payment-gateway/application/repositories/merchant.repository';
 
 type TRejectMerchantRequestParams = Pick<Merchant, 'id'>;
 
@@ -45,11 +45,12 @@ export class RejectMerchantController implements IController<
   null,
   RejectMerchantResponse
 > {
+  constructor(private readonly merchantRepository: IMerchantRepository) {}
+
   async handle(
     request: IHttpRequest<null, RejectMerchantRequestParams, null>
   ): Promise<IHttpResponse<RejectMerchantResponse>> {
-    const merchantRepository = new MerchantRepository();
-    const usecase = new RejectMerchantUseCase(merchantRepository);
+    const usecase = new RejectMerchantUseCase(this.merchantRepository);
     const merchant = await usecase.execute(
       new Merchant({ id: request.params.id })
     );

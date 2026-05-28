@@ -1,5 +1,4 @@
 import { GetMerchantByIdUseCase } from '@payment-gateway/application/usecases/merchant/get_by_id.usecase';
-import { MerchantRepository } from '@payment-gateway/infra/database/sequelize/repositories/merchant.repository';
 import {
   IMerchant,
   Merchant,
@@ -12,6 +11,7 @@ import {
   IHttpRequest,
   IHttpResponse,
 } from '@payment-gateway/infra/http/types';
+import { IMerchantRepository } from '@payment-gateway/application/repositories/merchant.repository';
 
 type TGetMerchantByIdRequestParams = Pick<IMerchant, 'id'>;
 
@@ -57,11 +57,12 @@ export class GetMerchantByIdController implements IController<
   null,
   GetMerchantByIdResponse
 > {
+  constructor(private readonly merchantRepository: IMerchantRepository) {}
+
   async handle(
     request: IHttpRequest<null, GetMerchantByIdRequestParams, null>
   ): Promise<IHttpResponse<GetMerchantByIdResponse>> {
-    const merchantRepository = new MerchantRepository();
-    const usecase = new GetMerchantByIdUseCase(merchantRepository);
+    const usecase = new GetMerchantByIdUseCase(this.merchantRepository);
 
     const merchant = await usecase.execute(
       new Merchant({ id: request.params.id })

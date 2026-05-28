@@ -1,10 +1,10 @@
+import { IMerchantRepository } from '@payment-gateway/application/repositories/merchant.repository';
 import { GetAllMerchantsUseCase } from '@payment-gateway/application/usecases/merchant/get_all.usecase';
 import {
   Merchant,
   MerchantStatus,
 } from '@payment-gateway/domain/merchant.entity';
 import { PersonType } from '@payment-gateway/domain/types';
-import { MerchantRepository } from '@payment-gateway/infra/database/sequelize/repositories/merchant.repository';
 import {
   HttpStatusCode,
   IController,
@@ -82,11 +82,12 @@ export class GetAllMerchantsController implements IController<
   GetAllMerchantsRequestQuery,
   GetAllMerchantsResponse
 > {
+  constructor(private readonly merchantRepository: IMerchantRepository) {}
+
   async handle(
     request: IHttpRequest<null, null, GetAllMerchantsRequestQuery>
   ): Promise<IHttpResponse<GetAllMerchantsResponse>> {
-    const merchantRepository = new MerchantRepository();
-    const usecase = new GetAllMerchantsUseCase(merchantRepository);
+    const usecase = new GetAllMerchantsUseCase(this.merchantRepository);
     const page = Number(request.query.page ?? 1);
     const pageSize = Number(request.query.page_size ?? 10);
 
