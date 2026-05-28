@@ -3,6 +3,8 @@ import {
   MerchantStatus,
 } from '@payment-gateway/domain/merchant.entity';
 import { IMerchantRepository } from '@payment-gateway/application/repositories/merchant.repository';
+import { MerchantNotFoundException } from '@payment-gateway/application/exceptions/merchant_not_found.exception';
+import { MerchantInvalidStatusException } from '@payment-gateway/application/exceptions/merchant_invalid_status.exception';
 
 export class ApproveMerchantUseCase {
   constructor(private readonly merchantRepository: IMerchantRepository) {}
@@ -13,7 +15,7 @@ export class ApproveMerchantUseCase {
       merchant.id
     );
     if (!existingMerchant) {
-      throw new Error('Merchant with this ID does not exist');
+      throw new MerchantNotFoundException();
     }
 
     if (existingMerchant.status === MerchantStatus.ACTIVE) {
@@ -21,7 +23,9 @@ export class ApproveMerchantUseCase {
     }
 
     if (existingMerchant.status !== MerchantStatus.PENDING) {
-      throw new Error('Only merchants with PENDING status can be approved');
+      throw new MerchantInvalidStatusException(
+        'Only merchants with PENDING status can be approved'
+      );
     }
 
     existingMerchant.status = MerchantStatus.ACTIVE;

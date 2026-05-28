@@ -4,6 +4,7 @@ import {
   MerchantStatus,
 } from '@payment-gateway/domain/merchant.entity';
 import { IMerchantRepository } from '@payment-gateway/application/repositories/merchant.repository';
+import { MerchantAlreadyExistsException } from '@payment-gateway/application/exceptions/merchant_invalid_status.exception copy';
 
 export class CreateMerchantUseCase {
   constructor(private readonly merchantRepository: IMerchantRepository) {}
@@ -14,7 +15,9 @@ export class CreateMerchantUseCase {
       merchant.email
     );
     if (existingMerchant) {
-      throw new Error('Merchant with this email already exists');
+      throw new MerchantAlreadyExistsException(
+        'Merchant with this email already exists'
+      );
     }
 
     // Check if a merchant with the same document number already exists
@@ -23,7 +26,9 @@ export class CreateMerchantUseCase {
         merchant.documentNumber
       );
     if (existingMerchantByDocument) {
-      throw new Error('Merchant with this document number already exists');
+      throw new MerchantAlreadyExistsException(
+        'Merchant with this document number already exists'
+      );
     }
 
     const merchantCreated = await this.merchantRepository.create(

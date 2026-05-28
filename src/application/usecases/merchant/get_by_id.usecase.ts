@@ -1,5 +1,6 @@
 import { IMerchant } from '@payment-gateway/domain/merchant.entity';
 import { IMerchantRepository } from '@payment-gateway/application/repositories/merchant.repository';
+import { MerchantNotFoundException } from '@payment-gateway/application/exceptions/merchant_not_found.exception';
 
 export class GetMerchantByIdUseCase {
   constructor(private readonly merchantRepository: IMerchantRepository) {}
@@ -9,7 +10,7 @@ export class GetMerchantByIdUseCase {
       merchant.id
     );
     if (!existingMerchant) {
-      throw new Error('Merchant with this ID does not exist');
+      throw new MerchantNotFoundException();
     }
     return existingMerchant;
   }
